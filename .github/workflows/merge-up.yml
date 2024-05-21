@@ -1,0 +1,22 @@
+name: Merge-up
+
+on:
+  # At 4:20 PM UTC, only on Monday
+  schedule:
+    - cron: '20 16 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  merge-up:
+    name: Merge-up
+    # Only run cron on the silverstripe account
+    if: (github.event_name == 'schedule' && github.repository_owner == 'silverstripe') || (github.event_name != 'schedule')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Merge-up
+        uses: silverstripe/gha-merge-up@v1
