@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  web:
+    image: joeplastic/silverstripe-base:8.1-apache
+    working_dir: /var/www/html
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www/html
+    # ports:
+    #   - "80:80"
+    networks:
+      - example
+
+  node:
+    image: node:18
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: "tail -f /dev/null"
+
+  php:
+    image: php:8.1-cli
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command: "tail -f /dev/null"
+
+networks:
+  example:
