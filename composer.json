@@ -1,6 +1,6 @@
 {
-    "name": "silverstripe-module/skeleton",
-    "description": "A skeleton for Silverstripe CMS modules.",
+    "name": "plasticstudio/silverstripe-seo-ai",
+    "description": "AI-powered SEO extension for Silverstripe CMS",
     "type": "silverstripe-vendormodule",
     "keywords": [
         "silverstripe",
@@ -29,5 +29,12 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "phpstan/extension-installer": true,
+            "silverstripe/vendor-plugin": true
+        }
+    }
 }
