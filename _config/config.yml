@@ -3,4 +3,4 @@ Name: Silverstripe SEO AI config
 ---
 PlasticStudio\SEO\Model\Extension\SeoPageExtension:
   extensions:
-    - PlasticStudio\SEOAI\Extensions\SeoAIPageExtension
+    - PlasticStudio\SEOAI\Extensions\SeoAIExtension
