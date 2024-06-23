@@ -14,7 +14,7 @@ class AISeoExtension extends SeoExtension
     {
         $fields = parent::updateCMSFields($fields);
 
-        $fields->addFieldToTab('Root.SEO', CheckboxField::create('Test', 'Test'));
+        $fields->addFieldToTab('Root.Main', CheckboxField::create('Test', 'Test'));
 
         return $fields;
     }
