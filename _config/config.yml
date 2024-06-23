@@ -1,1 +1,6 @@
-# see https://docs.silverstripe.org/en/developer_guides/configuration/configuration/
+---
+Name: Silverstripe SEO AI config
+---
+PlasticStudio\SEO\Model\Extension\SeoPageExtension:
+  extensions:
+    - PlasticStudio\SEOAI\Extensions\SeoAIPageExtension

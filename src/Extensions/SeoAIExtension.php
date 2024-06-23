@@ -1,10 +1,12 @@
 <?php
 
+namespace PlasticStudio\SEOAI\Extensions;
+
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\CheckboxField;
 use PlasticStudio\SEO\Model\Extension\SeoPageExtension;
 
-class AISeoExtension extends SeoPageExtension
+class SeoAIExtension extends SeoPageExtension
 {
     private static $db = [
         'Test' => 'Boolean',
