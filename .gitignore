@@ -5,3 +5,4 @@ composer.lock
 *.js.map
 *.css.map
 yarn-error.log
+/public/
