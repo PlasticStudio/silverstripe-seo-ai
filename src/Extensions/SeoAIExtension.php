@@ -4,9 +4,9 @@ namespace PlasticStudio\SEOAI\Extensions;
 
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\CheckboxField;
-use PlasticStudio\SEO\Model\Extension\SeoPageExtension;
+use SilverStripe\ORM\DataExtension;
 
-class SeoAIExtension extends SeoPageExtension
+class SeoAIExtension extends DataExtension
 {
     private static $db = [
         'Test' => 'Boolean',
