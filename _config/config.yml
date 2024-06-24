@@ -1,6 +1,6 @@
 ---
 Name: Silverstripe SEO AI config
 ---
-PlasticStudio\SEO\Model\Extension\SeoPageExtension:
+Silverstripe\CMS\Model\SiteTree:
   extensions:
     - PlasticStudio\SEOAI\Extensions\SeoAIExtension
