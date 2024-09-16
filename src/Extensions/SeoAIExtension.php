@@ -30,12 +30,7 @@ class SeoAIExtension extends DataExtension
             // Do an OpenAI API call to generate meta tags
             $prompt = $this->generatePrompt();
             $response = $this->promptAPICall($prompt);
-            $metaTags = json_decode($response, true); // Decode the response which is in JSON format
-            $this->populateMetaTags($metaTags);
-
-            // Reset generate tags field
-            $this->owner->GenerateTags = false;
-            $this->owner->write();
+            $this->populateMetaTagsFromAPI($response);
         }
     }
 
@@ -77,12 +72,6 @@ class SeoAIExtension extends DataExtension
         Your task is to scan the following content gathered from a web page, and generate the following meta-tags for it:
         - MetaTitle
         - MetaDescription
-            
-        You'll provide the response in JSON format every time, here's an example:
-        {
-            "metaTitle": "Meta Title",
-            "metaDescription": "This is an example of the meta description."
-        }
 
         Here is some background information on the brand which the web page belongs to, delimited by ---:
 
@@ -119,6 +108,22 @@ class SeoAIExtension extends DataExtension
                     "role" => "user",
                     "content" => $prompt
                 ]
+            ],
+            "response_format" => [
+                "type" => "json_schema",
+                "json_schema" => [
+                    "name" => "metadata",
+                    "schema" => [
+                        "type" => "object",
+                        "properties" => [
+                            "metaTitle" => ["type" => "string"],
+                            "metaDescription" => ["type" => "string"]
+                        ],
+                        "required" => ["metaTitle", "metaDescription"],
+                        "additionalProperties" => false
+                    ],
+                    "strict" => true
+                ]
             ]
         ];
 
@@ -146,16 +151,20 @@ class SeoAIExtension extends DataExtension
     /**
      * Populate the page's meta tags with AI generated content
      * @param Array
-     * 
-     * @return Void
+     *
+     * @return Boolean
      */
-    public function populateMetaTags($metaTags)
+    public function populateMetaTagsFromAPI($response)
     {
-        $page = $this->owner;
+        $metaTags = json_decode($response, true);
+        if ($metaTags) {
+            $this->owner->MetaTitle = $metaTags["metaTitle"] ?? '';
+            $this->owner->MetaDescription = $metaTags["metaDescription"] ?? '';
+            $this->owner->GenerateTags = false;
+            $this->owner->write();
+            return true;
+        }
 
-        $page->MetaTitle = $metaTags["metaTitle"];
-        $page->MetaDescription = $metaTags["metaDescription"];
-
-        return;
+        return false;
     }
 }
