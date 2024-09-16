@@ -1,7 +1,11 @@
 ---
-Name: Silverstripe SEO AI config
+Name: Silverstripe SEO AI Configuration
 ---
 
 Page:
   extensions:
     - PlasticStudio\SEOAI\Extensions\SeoAIExtension
+
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - PlasticStudio\SEOAI\Extensions\SeoAISiteConfigExtension

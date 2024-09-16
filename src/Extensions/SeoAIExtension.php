@@ -6,6 +6,7 @@ use voku\helper\HtmlDomParser;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\CheckboxField;
+use SilverStripe\SiteConfig\SiteConfig;
 
 class SeoAIExtension extends DataExtension
 {
@@ -15,7 +16,7 @@ class SeoAIExtension extends DataExtension
 
     public function updateSettingsFields(FieldList $fields)
     {
-        $fields->addFieldToTab('Root.MetaTags', CheckboxField::create('GenerateTags', 'Re-generate meta tags')->setDescription('This may take several seconds.'), 'MetaTitle');
+        $fields->addFieldToTab('Root.MetaTags', CheckboxField::create('GenerateTags', 'Re-generate meta tags')->setDescription('Check this box before publishing to re-generate the meta-tags. This may take several seconds.'), 'MetaTitle');
     }
 
     public function onAfterWrite()
@@ -48,6 +49,9 @@ class SeoAIExtension extends DataExtension
         // Get the content for the current page
         $pageLink = $this->owner->AbsoluteLink();
 
+        // Get brand context
+        $brandContext = SiteConfig::current_site_config()->ContextPrompt;
+
         // Strip the content of header, footer and nav elements
         $domParser = HtmlDomParser::str_get_html(file_get_contents($pageLink));
 
@@ -79,6 +83,12 @@ class SeoAIExtension extends DataExtension
             "metaTitle": "Meta Title",
             "metaDescription": "This is an example of the meta description."
         }
+
+        Here is some background information on the brand which the web page belongs to, delimited by ---:
+
+        ---
+        $brandContext
+        ---
 
         Here is the content for you to generate meta-tags for, deliniated by ~:
 
