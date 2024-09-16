@@ -26,7 +26,7 @@ class SeoAIExtension extends DataExtension
         $doGenerateTags = $this->owner->GenerateTags;
 
         // If re-generate tags has been selected OR it's the first publish for this page
-        if ($doGenerateTags || $this->owner->ID == 0) {
+        if ($doGenerateTags || !$this->owner->isPublished()) {
             // Do an OpenAI API call to generate meta tags
             $prompt = $this->generatePrompt();
             $response = $this->promptAPICall($prompt);
@@ -158,10 +158,17 @@ class SeoAIExtension extends DataExtension
     {
         $metaTags = json_decode($response, true);
         if ($metaTags) {
-            $this->owner->MetaTitle = $metaTags["metaTitle"] ?? '';
-            $this->owner->MetaDescription = $metaTags["metaDescription"] ?? '';
+            if (!$this->owner->isPublished() == 0 && !isset($this->MetaTitle)){
+                $this->owner->MetaTitle = $metaTags["metaTitle"] ?? '';
+            }
+
+            if (!$this->owner->isPublished() == 0 && !isset($this->MetaTitle)) {
+                $this->owner->MetaDescription = $metaTags["metaDescription"] ?? '';
+            }
+
             $this->owner->GenerateTags = false;
             $this->owner->write();
+
             return true;
         }
 
