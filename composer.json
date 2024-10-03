@@ -10,7 +10,7 @@
     "require": {
         "silverstripe/framework": "^5.0",
         "silverstripe/admin": "^2.0",
-        "plasticstudio/silverstripe-seo": "^5",
+        "plasticstudio/silverstripe-seo": "^5.1",
         "voku/simple_html_dom": "^4.8"
     },
     "require-dev": {
