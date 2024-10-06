@@ -14,9 +14,10 @@ class SeoAIExtension extends DataExtension
         'GenerateTags' => 'Boolean(false)',
     ];
 
-    public function updateSettingsFields(FieldList $fields)
+    public function updateCMSFields(FieldList $fields)
     {
-        $fields->addFieldToTab('Root.MetaTags', CheckboxField::create('GenerateTags', 'Re-generate meta tags')->setDescription('Check this box before publishing to re-generate the meta-tags. This may take several seconds.'), 'MetaTitle');
+        $fields->addFieldToTab('Root.Main', CheckboxField::create('GenerateTags', 'Re-generate meta tags')
+            ->setDescription('Check this box before publishing to re-generate the meta-tags. This may take several seconds.'), 'MetaTitle');
     }
 
     public function onAfterWrite()
