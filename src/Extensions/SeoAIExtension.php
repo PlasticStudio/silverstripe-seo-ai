@@ -104,6 +104,7 @@ class SeoAIExtension extends DataExtension
         $url = 'https://api.openai.com/v1/chat/completions';
         $data = [
             "model" => "gpt-4o-mini",
+            "temperature" => 0,
             "messages" => [
                 [
                     "role" => "user",
