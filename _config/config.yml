@@ -9,3 +9,7 @@ Page:
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - PlasticStudio\SEOAI\Extensions\SeoAISiteConfigExtension
+
+Silverstripe\CMS\Controllers\CMSPageEditController:
+  extensions:
+    - PlasticStudio\SEOAI\Extensions\SeoAIPageControllerExtension
