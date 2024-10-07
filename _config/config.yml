@@ -12,4 +12,4 @@ SilverStripe\SiteConfig\SiteConfig:
 
 Silverstripe\CMS\Controllers\CMSPageEditController:
   extensions:
-    - PlasticStudio\SEOAI\Extensions\SeoAIPageControllerExtension
+    - PlasticStudio\SEOAI\Extensions\SeoAICMSPageEditControllerExtension
