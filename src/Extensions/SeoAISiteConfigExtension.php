@@ -14,6 +14,11 @@ class SeoAISiteConfigExtension extends DataExtension
 
     public function updateCMSFields(FieldList $fields)
     {
-        $fields->addFieldToTab('Root.SEO', TextareaField::create('ContextPrompt', 'Brand Context Prompt')->setDescription('Additional information to give AI about your brand / content for more accurate metadata generation'), 'UseTitleAsMetaTitle');
+        $fields->addFieldToTab(
+            'Root.SEO',
+            TextareaField::create('ContextPrompt', 'Brand Context Prompt')
+                ->setDescription('Additional information to give AI about your brand / content for more accurate metadata generation'),
+            'UseTitleAsMetaTitle'
+        );
     }
 }

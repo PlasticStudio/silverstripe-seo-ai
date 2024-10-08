@@ -4,6 +4,7 @@ namespace PlasticStudio\SEOAI\Extensions;
 
 use voku\helper\HtmlDomParser;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\SiteConfig\SiteConfig;
 
 class SeoAICMSPageEditControllerExtension extends DataExtension
@@ -88,11 +89,12 @@ class SeoAICMSPageEditControllerExtension extends DataExtension
      */
     public function promptAPICall($prompt)
     {
-        $key = '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';
+        $openai = Config::inst()->get("openai");
+        $key = $openai->key;
         $url = 'https://api.openai.com/v1/chat/completions';
         $data = [
-            "model" => "gpt-4o-mini",
-            "temperature" => 0,
+            "model" => $openai->model,
+            "temperature" => $openai->temperature,
             "messages" => [
                 [
                     "role" => "user",
