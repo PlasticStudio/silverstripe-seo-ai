@@ -8,6 +8,7 @@ composer require "plasticstudio/silverstripe-seo-ai"
 
 ## Setting Up
 After installing the module, configure the API and model / temperature settings via YAML.
+
 *app/_config/seo-ai.yml*
 ```yaml
 ---
