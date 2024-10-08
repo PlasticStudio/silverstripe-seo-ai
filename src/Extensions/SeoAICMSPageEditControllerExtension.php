@@ -4,11 +4,16 @@ namespace PlasticStudio\SEOAI\Extensions;
 
 use voku\helper\HtmlDomParser;
 use SilverStripe\ORM\DataExtension;
-use SilverStripe\Core\Config\Config;
 use SilverStripe\SiteConfig\SiteConfig;
 
 class SeoAICMSPageEditControllerExtension extends DataExtension
 {
+
+    public $openaiKey = '';
+
+    public $model = '';
+
+    public $temperature = 0;
 
     private static $allowed_actions = [
         'generateTags',
@@ -89,12 +94,11 @@ class SeoAICMSPageEditControllerExtension extends DataExtension
      */
     public function promptAPICall($prompt)
     {
-        $openai = Config::inst()->get("openai");
-        $key = $openai->key;
+        $key = $this->openaiKey;
         $url = 'https://api.openai.com/v1/chat/completions';
         $data = [
-            "model" => $openai->model,
-            "temperature" => $openai->temperature,
+            "model" => $this->model,
+            "temperature" => $this->temperature,
             "messages" => [
                 [
                     "role" => "user",
