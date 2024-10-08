@@ -1,8 +1,19 @@
-# Documentation
+# Silverstripe SEO AI Module
 
-Add your documentation in the `docs/en/` folder as markdown. Note the "en/" part of the path refers to the language (English in this case) used in the documentation you provide.
-If your documentation is vast, you can split it into many markdown files and sub folders.
+## Installation
+``` composer require "plasticstudio/silverstripe-seo-ai" ```
 
-Look over the [guidance on documentation](https://docs.silverstripe.org/en/contributing/documentation/)
+## Setting Up
+After installing the module, configure the API and model / temperature settings via YAML.
 
-Make sure to remove this readme in your actual module!
+```
+---
+Name: silverstripe-seo-ai
+---
+SilverStripe\Core\Injector\Injector:
+  PlasticStudio\SEOAI\Extensions\SeoAICMSPageEditControllerExtension:
+    properties:
+      openaiKey: "`OPENAI_API_KEY`"
+      model: "gpt-4o-mini"
+      temperature: 0
+```
