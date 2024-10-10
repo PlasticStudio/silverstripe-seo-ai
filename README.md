@@ -8,6 +8,9 @@ composer require "plasticstudio/silverstripe-seo-ai"
 
 ## Setting Up
 After installing the module, configure the API and model / temperature settings via YAML.
+
+Any model with text input / output on [OpenAI's Platform](https://platform.openai.com/docs/models) will work, GPT-4o Mini is the default (recommended).
+
 *app/_config/seo-ai.yml*
 ```yaml
 ---
@@ -20,3 +23,15 @@ SilverStripe\Core\Injector\Injector:
       model: "gpt-4o-mini"
       temperature: 0
 ```
+
+## Usage
+
+Currently this module generates tags for the fields "Meta Title" and "Meta Description"
+
+To generate tags, navigate to the page you'd like to generate tags for and click "Generate SEO Tags" in the "Page SEO Settings" section.
+
+[Zoomed Out Screenshot](docs/images/zoomed-out-screenshot.png)
+
+[Zoomed In Screenshot](docs/images/zoomed-in-screenshot.png)
+
+Once this process has completed, publish the page as you would normally. 
