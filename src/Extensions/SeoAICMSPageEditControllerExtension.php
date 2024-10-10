@@ -11,7 +11,7 @@ class SeoAICMSPageEditControllerExtension extends DataExtension
 
     public $openaiKey = '';
 
-    public $model = '';
+    public $model = 'gpt-4o-mini';
 
     public $temperature = 0;
 
