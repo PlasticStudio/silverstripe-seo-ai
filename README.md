@@ -26,12 +26,12 @@ SilverStripe\Core\Injector\Injector:
 
 ## Usage
 
-Currently this module generates tags for the fields "Meta Title" and "Meta Description"
+Currently this module generates tags for the fields "Meta Title" and "Meta Description".
 
 To generate tags, navigate to the page you'd like to generate tags for and click "Generate SEO Tags" in the "Page SEO Settings" section.
 
-[Zoomed Out Screenshot](docs/images/zoomed-out-screenshot.png)
+![Zoomed In Screenshot](docs/images/zoomed-in-screenshot.png)
 
-[Zoomed In Screenshot](docs/images/zoomed-in-screenshot.png)
+[Zoomed Out Screenshot](docs/images/zoomed-out-screenshot.png)
 
 Once this process has completed, publish the page as you would normally. 
