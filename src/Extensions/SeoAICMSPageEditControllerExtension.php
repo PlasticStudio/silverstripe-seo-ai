@@ -23,7 +23,7 @@ class SeoAICMSPageEditControllerExtension extends Extension
     public function generateTags()
     {
         if ($this->owner->currentPage()->stagesDiffer('Stage', 'Live')){
-            throw new ValidationException('The page must be published before using this action');
+            throw new ValidationException('Publish the page first for accurate tag generation');
         }
         $prompt = $this->generatePrompt();
         $response = $this->promptAPICall($prompt);
