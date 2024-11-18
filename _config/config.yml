@@ -13,3 +13,7 @@ SilverStripe\SiteConfig\SiteConfig:
 Silverstripe\CMS\Controllers\CMSPageEditController:
   extensions:
     - PlasticStudio\SEOAI\Extensions\SeoAICMSPageEditControllerExtension
+
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - "client/css/cms.css"

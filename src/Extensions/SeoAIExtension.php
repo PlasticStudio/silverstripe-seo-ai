@@ -11,9 +11,9 @@ class SeoAIExtension extends DataExtension
 {
     public function updateCMSFields(FieldList $fields)
     {
-        $fields->insertAfter('SocialImage', CompositeField::create(
-                CmsInlineFormAction::create('generateTags', 'Generate SEO Tags')
-            )->setDescription('Generate SEO tags using AI (this may take several seconds)')
+        $fields->insertAfter('SocialImage', CompositeField::create(CmsInlineFormAction::create('generateTags', 'Generate SEO Tags'))
+            ->setDescription('Generate SEO tags using AI (this may take several seconds)')
+            ->addExtraClass('generate-seo-button')
         );
     }
 }
