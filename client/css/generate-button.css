@@ -1,4 +1,10 @@
 .generate-seo-button {
     background-color: #0071c4;
+    border-color: #0071c4;
     color: white;
+}
+
+.generate-seo-button:hover {
+    background-color: #005b9e;
+    border-color: #005491;    
 }
