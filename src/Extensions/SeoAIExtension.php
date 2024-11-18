@@ -19,7 +19,7 @@ class SeoAIExtension extends Extension
         $fields->insertAfter('SocialImage', CompositeField::create(CmsInlineFormAction::create('generateTags', 'Generate SEO Tags')
                 ->addExtraClass('generate-seo-button')
             )
-            ->setDescription('Generate SEO tags using AI (this may take several seconds)')
+            ->setDescription('Generate SEO tags using AI. Tags are generated from published page data only to ensure accuracy.')
         );
     }
 }
