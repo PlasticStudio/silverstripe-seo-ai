@@ -16,4 +16,4 @@ Silverstripe\CMS\Controllers\CMSPageEditController:
 
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
-    - "client/css/cms.css"
+    - "client/css/generate-button.css"
