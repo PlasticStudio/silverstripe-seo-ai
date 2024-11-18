@@ -19,7 +19,7 @@ class SeoAIExtension extends Extension
         $fields->insertBefore('MetaTitle', CompositeField::create(CmsInlineFormAction::create('generateTags', 'Generate SEO Tags')
                 ->addExtraClass('generate-seo-button')
             )
-            ->setDescription('Generate SEO tags using AI. Tags are generated from published page data only to ensure accuracy.')
+            ->setDescription('NOTE: Publish the page before generating. The results are generated from the published page to ensure accuracy.')
         );
     }
 }
