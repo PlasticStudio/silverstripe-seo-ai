@@ -5,6 +5,7 @@ namespace PlasticStudio\SEOAI\Extensions;
 use voku\helper\HtmlDomParser;
 use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\ORM\ValidationException;
 
 class SeoAICMSPageEditControllerExtension extends Extension
 {
@@ -21,6 +22,9 @@ class SeoAICMSPageEditControllerExtension extends Extension
 
     public function generateTags()
     {
+        if ($this->owner->currentPage()->stagesDiffer('Stage', 'Live')){
+            throw new ValidationException('The page must be published before using this action');
+        }
         $prompt = $this->generatePrompt();
         $response = $this->promptAPICall($prompt);
         $this->populateMetaTagsFromAPI($response);
