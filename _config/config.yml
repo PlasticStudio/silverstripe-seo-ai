@@ -16,4 +16,4 @@ Silverstripe\CMS\Controllers\CMSPageEditController:
 
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
-    - "client/css/generate-button.css"
+    - plasticstudio/silverstripe-seo-ai:client/css/generate-button.css

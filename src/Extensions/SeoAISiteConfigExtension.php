@@ -2,11 +2,11 @@
 
 namespace PlasticStudio\SEOAI\Extensions;
 
+use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\TextareaField;
 
-class SeoAISiteConfigExtension extends DataExtension
+class SeoAISiteConfigExtension extends Extension
 {
     private static $db = [
         'ContextPrompt' => 'Varchar(255)',

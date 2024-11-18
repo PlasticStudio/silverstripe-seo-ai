@@ -28,7 +28,7 @@
     },
     "extra": {
         "expose": [
-            "client/dist"
+            "client/cms"
         ]
     },
     "minimum-stability": "dev",

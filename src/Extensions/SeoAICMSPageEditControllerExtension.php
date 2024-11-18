@@ -3,10 +3,10 @@
 namespace PlasticStudio\SEOAI\Extensions;
 
 use voku\helper\HtmlDomParser;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
 
-class SeoAICMSPageEditControllerExtension extends DataExtension
+class SeoAICMSPageEditControllerExtension extends Extension
 {
 
     public $openaiKey = '';
