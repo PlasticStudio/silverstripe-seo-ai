@@ -8,3 +8,9 @@
     background-color: #005b9e;
     border-color: #005491;    
 }
+
+.generate-seo-button:focus {
+    background-color: #005b9e;
+    border-color: #005491;
+    outline-color: #29abe2;
+}
