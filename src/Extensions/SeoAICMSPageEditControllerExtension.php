@@ -49,8 +49,22 @@ class SeoAICMSPageEditControllerExtension extends Extension
         // Strip the content of header, footer and nav elements
         $domParser = HtmlDomParser::str_get_html(file_get_contents($pageLink));
 
-        foreach ($domParser->find('header,footer,nav') as $node) {
-            $node->outertext = '';
+        foreach ($domParser->find('header') as $node) {
+            if ($node) {
+                $node->outertext = '';
+            }
+        }
+
+        foreach ($domParser->find('footer') as $node) {
+            if ($node) {
+                $node->outertext = '';
+            }
+        }
+        
+        foreach ($domParser->find('nav') as $node) {
+            if ($node) {
+                $node->outertext = '';
+            }
         }
 
         // Find all elements with content tags
