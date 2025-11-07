@@ -17,6 +17,10 @@ class SeoAICMSPageEditControllerExtension extends Extension
 
     public $temperature = 0;
 
+    public $included_dom_selectors = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'];
+
+    public $excluded_dom_selectors = ['header', 'footer', 'nav'];
+
     private static $allowed_actions = [
         'generateTags',
     ];
@@ -29,6 +33,7 @@ class SeoAICMSPageEditControllerExtension extends Extension
         $prompt = $this->generatePrompt();
         $response = $this->promptAPICall($prompt);
         $this->populateMetaTagsFromAPI($response);
+
 
         $this->owner->redirectBack();
     }
@@ -50,11 +55,7 @@ class SeoAICMSPageEditControllerExtension extends Extension
         // Strip the content of header, footer and nav elements
         $domParser = HtmlDomParser::str_get_html(file_get_contents($pageLink));
 
-        $excludedDomElements = ['header', 'footer', 'nav'];
-        if($this->excluded_dom_selectors){
-            $excludedDomElements = $this->excluded_dom_selectors;
-        }
-
+        $excludedDomElements = $this->excluded_dom_selectors;
         foreach ($excludedDomElements as $element) {
             foreach ($domParser->find($element) as $node) {
                 if ($node) {
@@ -66,12 +67,7 @@ class SeoAICMSPageEditControllerExtension extends Extension
         // Find all elements with content tags
         $domContent = [];
 
-
-        $includedDomElements = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'];
-        if($this->included_dom_selectors){
-            $includedDomElements = $this->included_dom_selectors;
-        }
-
+        $includedDomElements = $this->included_dom_selectors;
         foreach ($includedDomElements as $element) {
             foreach ($domParser->find($element) as $node) {
                 if ($node) {
