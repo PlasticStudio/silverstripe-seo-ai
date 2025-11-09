@@ -2,6 +2,7 @@
 
 namespace PlasticStudio\SEOAI\Extensions;
 
+use SilverStripe\Core\Config\Config;
 use voku\helper\HtmlDomParser;
 use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
@@ -16,6 +17,10 @@ class SeoAICMSPageEditControllerExtension extends Extension
 
     public $temperature = 0;
 
+    public $included_dom_selectors = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li'];
+
+    public $excluded_dom_selectors = ['header', 'footer', 'nav'];
+
     private static $allowed_actions = [
         'generateTags',
     ];
@@ -28,6 +33,7 @@ class SeoAICMSPageEditControllerExtension extends Extension
         $prompt = $this->generatePrompt();
         $response = $this->promptAPICall($prompt);
         $this->populateMetaTagsFromAPI($response);
+
 
         $this->owner->redirectBack();
     }
@@ -49,29 +55,25 @@ class SeoAICMSPageEditControllerExtension extends Extension
         // Strip the content of header, footer and nav elements
         $domParser = HtmlDomParser::str_get_html(file_get_contents($pageLink));
 
-        foreach ($domParser->find('header') as $node) {
-            if ($node) {
-                $node->outertext = '';
-            }
-        }
-
-        foreach ($domParser->find('footer') as $node) {
-            if ($node) {
-                $node->outertext = '';
-            }
-        }
-        
-        foreach ($domParser->find('nav') as $node) {
-            if ($node) {
-                $node->outertext = '';
+        $excludedDomElements = $this->excluded_dom_selectors;
+        foreach ($excludedDomElements as $element) {
+            foreach ($domParser->find($element) as $node) {
+                if ($node) {
+                    $node->outertext = '';
+                }
             }
         }
 
         // Find all elements with content tags
         $domContent = [];
 
-        foreach ($domParser->find('p,h1,h2,h3,h4,h5') as $item) {
-            $domContent[] = strip_tags(html_entity_decode($item->innertext()));
+        $includedDomElements = $this->included_dom_selectors;
+        foreach ($includedDomElements as $element) {
+            foreach ($domParser->find($element) as $node) {
+                if ($node) {
+                    $domContent[] = strip_tags(html_entity_decode($node->innertext()));
+                }
+            }
         }
 
         // Remove empty items

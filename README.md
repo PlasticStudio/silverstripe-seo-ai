@@ -24,6 +24,45 @@ SilverStripe\Core\Injector\Injector:
       temperature: 0
 ```
 
+## Optional: Include / Exclude Specific DOM Elements
+
+You can optionally define which DOM elements should be included or excluded when generating SEO content.
+By default, the module includes common content elements (p, h1–h6, li) and excludes structural elements (header, footer, nav).
+
+This allows you to fine-tune content parsing for your custom site structure.
+
+Example:
+```yaml
+---
+Name: silverstripe-seo-ai
+---
+SilverStripe\Core\Injector\Injector:
+  PlasticStudio\SEOAI\Extensions\SeoAICMSPageEditControllerExtension:
+    properties:
+      openaiKey: "sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      model: "gpt-4o-mini"
+      temperature: 0
+      included_dom_selectors:
+        - "p"
+        - "h1"
+        - "h2"
+        - "h3"
+        - "h4"
+        - "h5"
+        - "h6"
+        - "li"
+        - ".class_one"
+        - "#ObjectTwo"
+      excluded_dom_selectors:
+        - "header"
+        - "footer"
+        - "nav"
+        - "form"
+        - "#ObjectOne"
+        - ".class__two"
+
+```
+
 ## Usage
 
 Currently this module generates tags for the fields "Meta Title" and "Meta Description".
