@@ -1,6 +1,10 @@
 # Silverstripe SEO AI Module
 This module extends [Silverstripe SEO](https://github.com/PlasticStudio/Silverstripe-SEO) to allow users to generate SEO tags with the OpenAI API.
 
+## Requirements
+
+Silverstripe 6
+
 ## Installation
 ```sh 
 composer require "plasticstudio/silverstripe-seo-ai" 
